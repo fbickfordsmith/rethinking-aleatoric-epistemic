@@ -1,0 +1,14 @@
+name: uncertainty
+
+channels:
+  - conda-forge
+
+dependencies:
+  - matplotlib
+  - numpy
+  - pip
+  - python=3.10
+  - scipy
+  - tqdm
+  - pip:
+    - --editable .  # Install src as a package
