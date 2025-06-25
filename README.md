@@ -31,7 +31,7 @@ python demo_uncertainty_and_evaluation.py
 ### Results
 
 <div align="center">
-	<img src="results/uncertainty_and_evaluation.svg" width="875"/>
+	<img src="results/uncertainty_and_evaluation.svg" width="820"/>
 </div>
 
 
@@ -48,7 +48,7 @@ python demo_bald_estimation_errors.py
 ### Results
 
 <div align="center">
-	<img src="results/bald_estimation_errors.svg" width="750"/>
+	<img src="results/bald_estimation_errors.svg" width="700"/>
 </div>
 
 
