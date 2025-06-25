@@ -8,7 +8,6 @@ dependencies:
   - numpy
   - pip
   - python=3.10
+  - scikit-learn
   - scipy
   - tqdm
-  - pip:
-    - --editable .  # Install src as a package
