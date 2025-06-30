@@ -239,7 +239,7 @@ gauss_scale = 0.8 / max(gauss_data_dist.pdf(gauss_data))
 figure, axes = plt.subplots(
     nrows=2,
     ncols=2,
-    figsize=(12, 5.5),
+    figsize=(12, 5.2),
     gridspec_kw={"width_ratios": [1, 3.5]},
 )
 
@@ -247,8 +247,8 @@ for i, problem in enumerate(results):
     pred_ig_errors = np.mean(results[problem]["pred_ig_errors"], axis=0)
     param_eig_errors = np.mean(results[problem]["param_eig_errors"], axis=0)
 
-    axes[i, 0].plot(log_ns, pred_ig_errors, label="Predictive IG")
-    axes[i, 0].plot(log_ns, param_eig_errors, label="Parameter EIG")
+    axes[i, 0].plot(log_ns, pred_ig_errors, label=r"$\varepsilon_z$")
+    axes[i, 0].plot(log_ns, param_eig_errors, label=r"$\varepsilon_\theta$")
     axes[i, 0].hlines(0, log_ns[0], log_ns[-1], linestyles=":", colors="gray")
     axes[i, 0].set(
         xlabel=r"Number of examples, $n$",
@@ -256,12 +256,12 @@ for i, problem in enumerate(results):
         xticklabels=(rf"$10^{int(log_n)}$" for log_n in log_ns),
         ylabel=r"Squared error (nats$^2$)",
         title=(
-            "Estimation error\nfor discrete data"
+            "EIG errors for discrete data"
             if problem == "discrete"
-            else "Estimation error\nfor continuous data"
+            else "EIG errors for continuous data"
         ),
     )
-    axes[i, 0].legend(loc="upper right", handlelength=1.5)
+    axes[i, 0].legend(loc="upper right", handlelength=1)
 
 for i in range(len(seeds)):
     for j in range(len(log_ns)):
@@ -284,7 +284,7 @@ for i in range(len(seeds)):
     )
 
 axes[0, 1].set(
-    xlabel="Random seed",
+    xlabel="Random-number seed",
     xticks=(10, 20, 30, 40, 50),
     xlim=(min(seeds) - 1, max(seeds) + 10),
     ylabel=r"$p_n(z=1)$",
@@ -313,7 +313,7 @@ for i in range(len(seeds[:n_gauss])):
     )
 
 axes[1, 1].set(
-    xlabel="Random seed",
+    xlabel="Random-number seed",
     xticks=seeds[:n_gauss],
     xlim=(min(seeds[:n_gauss]) - 0.2, max(seeds[:n_gauss]) + 2.7),
     title="Predictive distributions for continuous data",
@@ -321,6 +321,6 @@ axes[1, 1].set(
 )
 axes[1, 1].legend(loc="center right", handlelength=1)
 
-figure.tight_layout(w_pad=1, h_pad=1)
+figure.tight_layout(w_pad=1, h_pad=2)
 figure.savefig(save_dir / "bald_estimation_errors.svg", bbox_inches="tight")
 figure.show()
